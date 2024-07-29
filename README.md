@@ -9,10 +9,10 @@ Login/Signup view with validation logic for rapid prototyping.
 </p>
 
 ## How to install
-__Clone the repo:__
+__Add the repo as submodule to your project:__
 
 ```
-$ git clone https://
+$ git submodule add https://github.com/kicsipixel/PerseusKit.git
 ```
 
 __Add to your project's target as local framework__.

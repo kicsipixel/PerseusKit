@@ -12,27 +12,44 @@
   <img src="signup2.png" width="30%" />
 </p>
 
-## How to install
+## Installation
 __Add the repo as submodule to your project:__
 
 ```
 $ git submodule add https://github.com/kicsipixel/PerseusKit.git
 ```
 
+__Init the submodul:__
+```
+$ git submodule init
+```
+
+__Update the submodule:__
+```
+$ git submodule update
+```
+
 __Add to your project's target as local framework__.
 
-## How to use it
+## Usage
+
+__Add `PerseusDataViewModel` as `EnvironmentObject` to your view.__
 
 ```swift
 import PerseusKit
 
+@EnvironmentObject private var perseusDataViewModel: PerseusDataViewModel
 @State var isPresented = false
 
 var body: some View {
         VStack { }
-         .sheet(isPresented: $isPresented, content: {
+         .sheet(isPresented: $isPresented, content: {	
         	PerseusLoginView(isPresented: $isPresented)
         })
 }
 
 ```
+
+## Todo
+- Login email field doesn't need validation
+- Easier integration

@@ -11,7 +11,7 @@ import SwiftUI
 public struct PerseusLoginView: View {
     
     // Private properties
-    @StateObject private var dataViewModel = PerseusDataViewModel()
+    @EnvironmentObject private var perseusDataViewModel: PerseusDataViewModel
     @State private var isSecured = true
     
     // Properties
@@ -29,17 +29,17 @@ public struct PerseusLoginView: View {
                     .bold()
                 
                 // E-mail text field
-                PerseusLoginTextFieldView(email: $dataViewModel.email,
+                PerseusLoginTextFieldView(email: $perseusDataViewModel.email,
                                           placeholderImage: "envelope",
                                           placeholderText: "E-mail",
-                                          dataViewModel: dataViewModel)
+                                          dataViewModel: perseusDataViewModel)
                 
                 VStack {
                     // Password text field
-                    PerseusLoginSecureFieldView(password: $dataViewModel.password,
+                    PerseusLoginSecureFieldView(password: $perseusDataViewModel.password,
                                                 placeholderImage: "key",
                                                 placeholderText: "Password",
-                                                dataViewModel: dataViewModel)
+                                                dataViewModel: perseusDataViewModel)
                     
                     // Link to PerseusSignupView
                     NavigationLink("Not registered yet? Sign up.") {
@@ -49,6 +49,7 @@ public struct PerseusLoginView: View {
                     .frame(maxWidth: .infinity, alignment: .trailing)
                 }
                 
+                // Button
                 Button {
                     // Logic here comes here...
                     // self.isPresented = false
@@ -56,7 +57,7 @@ public struct PerseusLoginView: View {
                     Text("Login")
                 }
                 .buttonStyle(.bordered)
-                .disabled(dataViewModel.isSignUpComplete ? false : true)
+                .disabled(perseusDataViewModel.isSignUpComplete ? false : true)
                 
             }
             .toolbar {
@@ -71,6 +72,8 @@ public struct PerseusLoginView: View {
     }
 }
 
+// MARK: - Preview
 #Preview {
     PerseusLoginView(isPresented: .constant(true))
+        .environmentObject(PerseusDataViewModel())
 }

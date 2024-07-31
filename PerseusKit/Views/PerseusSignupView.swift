@@ -11,7 +11,7 @@ import SwiftUI
 public struct PerseusSignupView: View {
     
     // Private properties
-    @StateObject private var dataViewModel = PerseusDataViewModel()
+    @EnvironmentObject private var perseusDataViewModel: PerseusDataViewModel
     
     // Properties
     @Binding var isPresented: Bool
@@ -28,15 +28,15 @@ public struct PerseusSignupView: View {
                 .bold()
             
             // Simple text field with styling but no validation
-            TextField("Username", text: $dataViewModel.username)
-                .perseusCustomTextFieldStyle(text: $dataViewModel.username, image: "person")
+            TextField("Username", text: $perseusDataViewModel.username)
+                .perseusCustomTextFieldStyle(text: $perseusDataViewModel.username, image: "person")
             
                 // E-mail text field
-            PerseusLoginTextFieldView(email: $dataViewModel.email, placeholderImage: "envelope", placeholderText: "E-mail address", dataViewModel: dataViewModel)
+            PerseusLoginTextFieldView(email: $perseusDataViewModel.email, placeholderImage: "envelope", placeholderText: "E-mail address", dataViewModel: perseusDataViewModel)
             
             VStack {
                 // Password text field
-                PerseusLoginSecureFieldView(password: $dataViewModel.password, placeholderImage: "key", placeholderText: "Password", dataViewModel: dataViewModel)
+                PerseusLoginSecureFieldView(password: $perseusDataViewModel.password, placeholderImage: "key", placeholderText: "Password", dataViewModel: perseusDataViewModel)
                 
                 // Link back to PerseusLoginView
                 Button("Already registered!? Login.") {
@@ -46,6 +46,7 @@ public struct PerseusSignupView: View {
                 .frame(maxWidth: .infinity, alignment: .trailing)
             } // end of VStack
             
+            // Button
             Button {
                 // Logic comes here...
                 // self.isPresented = false
@@ -53,7 +54,7 @@ public struct PerseusSignupView: View {
                 Text("Register")
             }
             .buttonStyle(.bordered)
-            .disabled(dataViewModel.isSignUpComplete ? false : true)
+            .disabled(perseusDataViewModel.isSignUpComplete ? false : true)
             
         } // end of VStack
         .toolbar {
@@ -68,6 +69,8 @@ public struct PerseusSignupView: View {
     }
 }
 
+// MARK: - Preview
 #Preview {
     PerseusSignupView(isPresented: .constant(false))
+        .environmentObject(PerseusDataViewModel())
 }

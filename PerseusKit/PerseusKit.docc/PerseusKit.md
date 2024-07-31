@@ -1,6 +1,6 @@
 # ``PerseusKit``
 
-<!--@START_MENU_TOKEN@-->Summary<!--@END_MENU_TOKEN@-->
+Login/Register views with validation logic for rapid prototyping.
 
 ## Overview
 

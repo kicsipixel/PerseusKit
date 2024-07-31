@@ -6,16 +6,17 @@
 //  Copyright © 2024 Szabolcs Tóth. All rights reserved.
 //
 
+import Combine
 import Foundation
 
-final class PerseusDataViewModel: ObservableObject {
+public final class PerseusDataViewModel: ObservableObject {
     
     // Private properties
     // Properties
-    @Published var username = ""
-    @Published var email = ""
-    @Published var password = ""
-    @Published var rePassword = ""
+    @Published public var username = ""
+    @Published public var email = ""
+    @Published public var password = ""
+    @Published public var rePassword = ""
     
     // MARK: - Validations
     func isPasswordValid() -> Bool {

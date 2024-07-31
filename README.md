@@ -1,6 +1,10 @@
-# PerseusKit
+<p>
+	<img src="Perseus.png" />
+</p>
 
-Login/Signup view with validation logic for rapid prototyping.
+# PerseusKit
+**Login/Register views with validation logic for rapid prototyping.**
+> No need to start everytime from scratch...
 
 <p float="left">
   <img src="login.png" width="30%" />
